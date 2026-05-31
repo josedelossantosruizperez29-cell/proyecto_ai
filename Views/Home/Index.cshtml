@@ -1,0 +1,529 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>EMMA IA</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="~/css/style_dashboard.css">
+</head>
+<body>
+
+<!-- ════════════ NAVBAR ════════════ -->
+<nav>
+  <a class="nav-logo" href="#">
+    <svg class="nav-logo-icon" viewBox="0 0 34 34" fill="none">
+      <rect width="34" height="34" rx="9" fill="#0c1225"/>
+      <rect x=".5" y=".5" width="33" height="33" rx="8.5" stroke="#5b9cf6" stroke-opacity=".25"/>
+      <g filter="url(#fn)">
+        <path d="M17 8C15 6.8 11 7.4 9.5 10C8.2 12.2 8.7 14.8 10.2 17C8.7 18 8.2 20.5 9.2 22.5C10.2 24.5 12.5 25 14 24C14.8 25.5 16 26.3 17 26" stroke="#5b9cf6" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+        <path d="M17 8C19 6.8 23 7.4 24.5 10C25.8 12.2 25.3 14.8 23.8 17C25.3 18 25.8 20.5 24.8 22.5C23.8 24.5 21.5 25 20 24C19.2 25.5 18 26.3 17 26" stroke="#5b9cf6" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+        <line x1="17" y1="8" x2="17" y2="26" stroke="#5b9cf6" stroke-width="1" stroke-dasharray="2 1.5" stroke-linecap="round"/>
+        <path d="M11 17.5Q14 16 17 17.5Q20 16 23 17.5" stroke="#5b9cf6" stroke-width=".85" opacity=".7" fill="none" stroke-linecap="round"/>
+        <line x1="8.5" y1="17.2" x2="5.5" y2="17.2" stroke="#5b9cf6" stroke-width=".8" opacity=".4"/>
+        <line x1="25.5" y1="17.2" x2="28.5" y2="17.2" stroke="#5b9cf6" stroke-width=".8" opacity=".4"/>
+        <circle cx="17" cy="17.2" r="2" fill="#5b9cf6" opacity=".9">
+          <animate attributeName="opacity" values=".9;.3;.9" dur="2s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="5.5" cy="17.2" r="1.3" fill="#5b9cf6" opacity=".4"/>
+        <circle cx="28.5" cy="17.2" r="1.3" fill="#5b9cf6" opacity=".4"/>
+      </g>
+      <defs><filter id="fn" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="1" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+    </svg>
+    <div class="nav-logo-name">Emma<span>Chat</span></div>
+  </a>
+
+  <div class="nav-links">
+    <a class="nav-link" href="#modelos">Modelos</a>
+    <a class="nav-link" href="#features">Funciones</a>
+    <a class="nav-link" href="#como">Cómo funciona</a>
+    <a class="nav-link" href="#precios">Precios</a>
+    <a class="nav-link" href="#">Blog</a>
+  </div>
+
+  <div class="nav-actions">
+    <a class="nav-btn-ghost" href="#">Iniciar sesión</a>
+    <a class="nav-btn-primary" href="#">Comenzar gratis →</a>
+  </div>
+</nav>
+
+<!-- ════════════ HERO ════════════ -->
+<section class="hero">
+  <div class="hero-orb1"></div>
+  <div class="hero-orb2"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <div class="badge-dot"></div>
+      3 MODELOS · 100% GRATUITO
+    </div>
+    <h1 class="hero-title">
+      La IA más <em>inteligente</em><br/>
+      <span class="dim">al alcance de todos</span>
+    </h1>
+    <p class="hero-sub">
+      Accede a Emma 3.1, Emma Opus 5 y Emma Max en un solo lugar, sin pagar un centavo.
+      Escribe, programa, analiza y crea — con el poder de 3 modelos de IA de clase mundial.
+    </p>
+    <div class="hero-cta">
+      <a class="btn-primary" href="#">
+        Empieza gratis ahora →
+      </a>
+      <a class="btn-ghost" href="#">
+        ▷ Ver demo
+      </a>
+    </div>
+    <div class="hero-note">
+      Sin tarjeta de crédito &nbsp;·&nbsp; Sin límite de tiempo &nbsp;·&nbsp; Listo en 30 segundos
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <!-- Floating badges -->
+    <div class="hero-badge-float hbf1">
+      <div class="hbf-icon">⚡</div>
+      <div class="hbf-info">
+        <div class="hbf-name">Emma 3.1 70B</div>
+        <div class="hbf-sub">Meta via Groq</div>
+      </div>
+      <div class="hbf-tag">GRATIS</div>
+    </div>
+    <div class="hero-badge-float hbf2">
+      <div class="hbf-icon">🌟</div>
+      <div class="hbf-info">
+        <div class="hbf-name">Emma Opus 5</div>
+        <div class="hbf-sub">Google DeepMind</div>
+      </div>
+      <div class="hbf-tag">GRATIS</div>
+    </div>
+
+    <!-- App preview mockup -->
+    <div class="app-preview">
+      <div class="preview-bar">
+        <div class="preview-dots">
+          <div class="pd pd1"></div><div class="pd pd2"></div><div class="pd pd3"></div>
+        </div>
+        <div class="preview-title">neuralchat.app</div>
+      </div>
+      <div class="preview-body">
+        <div class="preview-sidebar">
+          <div class="ps-logo">
+            <div class="ps-logo-dot">🧠</div>
+            <div class="ps-name">Neural<span>Chat</span></div>
+          </div>
+          <div class="ps-btn">+ Nuevo chat</div>
+          <div class="ps-label">HOY</div>
+          <div class="ps-item a">📝 Mi proyecto de IA</div>
+          <div class="ps-item">📄 Código en Python</div>
+          <div class="ps-label">AYER</div>
+          <div class="ps-item">💡 Ideas de startup</div>
+          <div class="ps-item">✉️ Email al cliente</div>
+        </div>
+        <div class="preview-main">
+          <div class="preview-topbar">
+            <div class="preview-model-pill">
+              <div class="pm-dot"></div>
+              Gemini Flash
+            </div>
+          </div>
+          <div class="preview-chat">
+            <div class="pc-user">
+              <div class="pc-av">👤</div>
+              <div class="pc-bubble-u">¿Cómo funciona async/await en JS?</div>
+            </div>
+            <div class="pc-ai">
+              <div class="pc-av">🧠</div>
+              <div class="pc-bubble">
+                <code>async/await</code> es azúcar sintáctica sobre Promesas. Una función <code>async</code> retorna una Promesa automáticamente...
+              </div>
+            </div>
+            <div class="pc-user">
+              <div class="pc-av">👤</div>
+              <div class="pc-bubble-u">Dame un ejemplo práctico</div>
+            </div>
+            <div class="pc-ai">
+              <div class="pc-av">🧠</div>
+              <div class="pc-bubble">Claro, aquí un ejemplo con fetch de datos de una API...</div>
+            </div>
+          </div>
+          <div class="preview-input">
+            <div class="pi-box">
+              <div class="pi-text">Escribe tu mensaje aquí...</div>
+              <div class="pi-send">➤</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ STATS BAR ════════════ -->
+<div class="stats-bar">
+  <div class="stat-item reveal">
+    <div class="stat-num">3<span>+</span></div>
+    <div class="stat-label">Modelos de IA gratuitos</div>
+  </div>
+  <div class="stat-item reveal reveal-delay-1">
+    <div class="stat-num">5K<span>+</span></div>
+    <div class="stat-label">Usuarios activos</div>
+  </div>
+  <div class="stat-item reveal reveal-delay-2">
+    <div class="stat-num">1M<span>+</span></div>
+    <div class="stat-label">Mensajes procesados</div>
+  </div>
+  <div class="stat-item reveal reveal-delay-3">
+    <div class="stat-num">99<span>%</span></div>
+    <div class="stat-label">Uptime garantizado</div>
+  </div>
+</div>
+
+<!-- ════════════ MODELS ════════════ -->
+<section class="models-section" id="modelos">
+  <div class="models-header reveal">
+    <div class="section-tag">// MODELOS DISPONIBLES</div>
+    <h2 class="section-title">Tres modelos. <em>Un solo lugar.</em></h2>
+    <p class="section-sub">Elige el modelo que mejor se adapta a tu tarea. Cambia entre ellos con un clic, sin perder el contexto.</p>
+  </div>
+  <div class="models-grid">
+    <div class="model-card reveal">
+      <div class="mc-badge">GRATIS</div>
+      <div class="mc-icon" style="background:rgba(66,133,244,.12)">🌟</div>
+      <div class="mc-name">Emma 3.1</div>
+      <div class="mc-by">Google DeepMind</div>
+      <p class="mc-desc">Rápido, multimodal y versátil. Ideal para preguntas generales, análisis de documentos y tareas creativas del día a día.</p>
+      <div class="mc-tags">
+        <span class="mc-tag">Rápido</span>
+        <span class="mc-tag">Multimodal</span>
+        <span class="mc-tag">General</span>
+      </div>
+    </div>
+    <div class="model-card reveal reveal-delay-1">
+      <div class="mc-badge">GRATIS</div>
+      <div class="mc-icon" style="background:rgba(245,166,35,.10)">⚡</div>
+      <div class="mc-name">Emma Opus 5</div>
+      <div class="mc-by">Guia Emma</div>
+      <p class="mc-desc">70 mil millones de parámetros con velocidad extrema gracias a la infraestructura de Groq. Perfecto para razonamiento complejo.</p>
+      <div class="mc-tags">
+        <span class="mc-tag">Ultra rápido</span>
+        <span class="mc-tag">Razonamiento</span>
+        <span class="mc-tag">Open source</span>
+      </div>
+    </div>
+    <div class="model-card reveal reveal-delay-2">
+      <div class="mc-badge">GRATIS</div>
+      <div class="mc-icon" style="background:rgba(155,89,182,.12)">🔬</div>
+      <div class="mc-name">Emma Max</div>
+      <div class="mc-by">Emma AI Power</div>
+      <p class="mc-desc">Especialista en código, matemáticas y análisis técnico. Eficiente, preciso y con excelente capacidad de instrucción.</p>
+      <div class="mc-tags">
+        <span class="mc-tag">Código</span>
+        <span class="mc-tag">Análisis</span>
+        <span class="mc-tag">Preciso</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ FEATURES ════════════ -->
+<section class="features-section" id="features">
+  <div class="features-inner">
+    <div>
+      <div class="section-tag reveal">// FUNCIONES</div>
+      <h2 class="section-title reveal">Todo lo que necesitas,<br/><em>nada que no</em></h2>
+      <p class="section-sub reveal">Diseñado para ser simple pero poderoso. Sin configuraciones complicadas ni suscripciones ocultas.</p>
+      <div class="features-list">
+        <div class="feat-item reveal">
+          <div class="feat-icon">💬</div>
+          <div class="feat-text">
+            <div class="feat-title">Chat intuitivo como WhatsApp</div>
+            <div class="feat-desc">Interfaz familiar. Escribe y recibe respuestas al instante con streaming en tiempo real.</div>
+          </div>
+        </div>
+        <div class="feat-item reveal reveal-delay-1">
+          <div class="feat-icon">🔀</div>
+          <div class="feat-text">
+            <div class="feat-title">Cambia de modelo en un clic</div>
+            <div class="feat-desc">Alterna entre Emma, Emma Opus y Emma Max sin perder tu conversación ni el contexto.</div>
+          </div>
+        </div>
+        <div class="feat-item reveal reveal-delay-2">
+          <div class="feat-icon">📂</div>
+          <div class="feat-text">
+            <div class="feat-title">Historial organizado</div>
+            <div class="feat-desc">Todas tus conversaciones guardadas automáticamente y organizadas por fecha.</div>
+          </div>
+        </div>
+        <div class="feat-item reveal reveal-delay-3">
+          <div class="feat-icon">⚙️</div>
+          <div class="feat-text">
+            <div class="feat-title">Configuración avanzada</div>
+            <div class="feat-desc">Ajusta temperatura, longitud de respuesta, idioma y más desde el panel lateral.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="features-visual reveal">
+      <div class="fv-header">
+        <div class="fv-title">⚙ Configuración</div>
+        <div class="fv-tag">PANEL LATERAL</div>
+      </div>
+      <div class="fv-body">
+        <div class="fv-slider-wrap">
+          <div class="fv-slider-hd">
+            <span class="fv-slider-lb">Temperatura</span>
+            <span class="fv-slider-vl">0.7</span>
+          </div>
+          <div class="fv-track"><div class="fv-fill"></div><div class="fv-thumb"></div></div>
+        </div>
+        <div class="fv-slider-wrap">
+          <div class="fv-slider-hd">
+            <span class="fv-slider-lb">Longitud máxima</span>
+            <span class="fv-slider-vl">2048</span>
+          </div>
+          <div class="fv-track"><div class="fv-fill" style="width:40%"></div><div class="fv-thumb" style="left:40%"></div></div>
+        </div>
+        <div class="fv-setting">
+          <div class="fv-sinfo"><div class="fv-sname">Streaming</div><div class="fv-sdesc">Respuesta progresiva</div></div>
+          <div class="fv-tog"></div>
+        </div>
+        <div class="fv-setting">
+          <div class="fv-sinfo"><div class="fv-sname">Historial de chat</div><div class="fv-sdesc">Guardar conversaciones</div></div>
+          <div class="fv-tog"></div>
+        </div>
+        <div class="fv-setting">
+          <div class="fv-sinfo"><div class="fv-sname">Modo compacto</div><div class="fv-sdesc">Menos espaciado</div></div>
+          <div class="fv-tog off"></div>
+        </div>
+        <div class="fv-setting">
+          <div class="fv-sinfo"><div class="fv-sname">Notificaciones</div><div class="fv-sdesc">Alertas de respuesta</div></div>
+          <div class="fv-tog"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ HOW IT WORKS ════════════ -->
+<section class="how-section" id="como">
+  <div class="how-header reveal">
+    <div class="section-tag">// CÓMO FUNCIONA</div>
+    <h2 class="section-title">En 4 pasos, <em>listo</em></h2>
+    <p class="section-sub">Sin instalaciones, sin configuraciones complicadas. Empieza a usar IA en menos de un minuto.</p>
+  </div>
+  <div class="steps-grid">
+    <div class="step reveal">
+      <div class="step-num">1</div>
+      <div class="step-icon">📧</div>
+      <div class="step-title">Crea tu cuenta</div>
+      <div class="step-desc">Regístrate con tu correo o Google. Gratis para siempre, sin tarjeta de crédito.</div>
+    </div>
+    <div class="step reveal reveal-delay-1">
+      <div class="step-num">2</div>
+      <div class="step-icon">🤖</div>
+      <div class="step-title">Elige tu modelo</div>
+      <div class="step-desc">Selecciona entre Emma, Emma Opus o Emma Max según la tarea que tengas en mente.</div>
+    </div>
+    <div class="step reveal reveal-delay-2">
+      <div class="step-num">3</div>
+      <div class="step-icon">💬</div>
+      <div class="step-title">Escribe tu pregunta</div>
+      <div class="step-desc">Pregunta lo que necesites en español o cualquier idioma. Sin comandos especiales.</div>
+    </div>
+    <div class="step reveal reveal-delay-3">
+      <div class="step-num">4</div>
+      <div class="step-icon">🚀</div>
+      <div class="step-title">Obtén tu respuesta</div>
+      <div class="step-desc">Recibe respuestas precisas en segundos. Itera, refina y comparte con facilidad.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ TESTIMONIALS ════════════ -->
+<section class="testi-section">
+  <div class="testi-header reveal">
+    <div class="section-tag">// LO QUE DICEN</div>
+    <h2 class="section-title">Usado por <em>estudiantes, devs y creadores</em></h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">Llevaba meses buscando una alternativa gratuita a ChatGPT Plus. Emma IA me da acceso a modelos igual de potentes sin gastar nada. Increíble.</p>
+      <div class="testi-author">
+        <div class="testi-av">SM</div>
+        <div><div class="testi-name">Sofía Martínez</div><div class="testi-role">Estudiante de Ingeniería</div></div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-1">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">Uso Emma Opus para revisar mi código y Gemini para redactar emails. Tener los 3 en un solo lugar me ahorra horas cada semana. Ya no puedo vivir sin esto.</p>
+      <div class="testi-author">
+        <div class="testi-av">CR</div>
+        <div><div class="testi-name">Carlos Rodríguez</div><div class="testi-role">Desarrollador Full Stack</div></div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-2">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">La interfaz es limpia y súper intuitiva. En 5 minutos ya estaba chateando con Emma Max sin haber leído ningún tutorial. Perfecto para personas que no son técnicas.</p>
+      <div class="testi-author">
+        <div class="testi-av">LP</div>
+        <div><div class="testi-name">Laura Pérez</div><div class="testi-role">Diseñadora UX</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ PRICING ════════════ -->
+<section class="pricing-section" id="precios">
+  <div class="pricing-header reveal">
+    <div class="section-tag">// PRECIOS</div>
+    <h2 class="section-title">Siempre <em>gratis</em>. Sin sorpresas.</h2>
+    <p class="section-sub" style="margin:0 auto">Creemos que la IA debe ser accesible para todos. Sin planes ocultos, sin cobros inesperados.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card reveal">
+      <div class="pc-name">BÁSICO</div>
+      <div class="pc-price"><sup>$</sup>0</div>
+      <div class="pc-period">para siempre</div>
+      <ul class="pc-features">
+        <li>3 modelos de IA gratuitos</li>
+        <li>5,000 mensajes al mes</li>
+        <li>Historial de conversaciones</li>
+        <li>Cambio de modelo en un clic</li>
+        <li class="no">Acceso prioritario</li>
+        <li class="no">Soporte dedicado</li>
+      </ul>
+      <button class="pc-btn pc-btn-ghost">Comenzar gratis</button>
+    </div>
+    <div class="price-card featured reveal reveal-delay-1">
+      <div class="pc-popular">MÁS POPULAR</div>
+      <div class="pc-name">PRO</div>
+      <div class="pc-price"><sup>$</sup>0</div>
+      <div class="pc-period">durante el beta</div>
+      <ul class="pc-features">
+        <li>Todo lo del plan Básico</li>
+        <li>Mensajes ilimitados</li>
+        <li>Acceso anticipado a nuevos modelos</li>
+        <li>Configuración avanzada completa</li>
+        <li>Acceso prioritario a servidores</li>
+        <li class="no">Soporte dedicado</li>
+      </ul>
+      <button class="pc-btn pc-btn-primary">Unirse al beta gratis →</button>
+    </div>
+    <div class="price-card reveal reveal-delay-2">
+      <div class="pc-name">EQUIPO</div>
+      <div class="pc-price"><sup>$</sup>0</div>
+      <div class="pc-period">en desarrollo</div>
+      <ul class="pc-features">
+        <li>Todo lo del plan Pro</li>
+        <li>Espacio de trabajo compartido</li>
+        <li>Historial de equipo</li>
+        <li>API de integración</li>
+        <li>Soporte dedicado</li>
+        <li>Panel de administración</li>
+      </ul>
+      <button class="pc-btn pc-btn-ghost">Notificarme →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ CTA ════════════ -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <h2 class="cta-title reveal">¿Listo para usar <em>IA de verdad</em>?</h2>
+    <p class="cta-sub reveal">Únete a miles de usuarios que ya potencian su trabajo con NeuralChat. Gratis, ahora mismo.</p>
+    <div class="cta-btns reveal">
+      <a class="btn-primary" href="#">Crear cuenta gratis →</a>
+      <a class="btn-ghost" href="#">Ver cómo funciona</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a class="footer-logo" href="#">
+        <svg width="28" height="28" viewBox="0 0 34 34" fill="none">
+          <rect width="34" height="34" rx="9" fill="#0c1225"/>
+          <rect x=".5" y=".5" width="33" height="33" rx="8.5" stroke="#5b9cf6" stroke-opacity=".25"/>
+          <path d="M17 8C15 6.8 11 7.4 9.5 10C8.2 12.2 8.7 14.8 10.2 17C8.7 18 8.2 20.5 9.2 22.5C10.2 24.5 12.5 25 14 24C14.8 25.5 16 26.3 17 26" stroke="#5b9cf6" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+          <path d="M17 8C19 6.8 23 7.4 24.5 10C25.8 12.2 25.3 14.8 23.8 17C25.3 18 25.8 20.5 24.8 22.5C23.8 24.5 21.5 25 20 24C19.2 25.5 18 26.3 17 26" stroke="#5b9cf6" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+          <circle cx="17" cy="17.2" r="2" fill="#5b9cf6" opacity=".9"/>
+        </svg>
+        <div class="footer-logo-name">Neural<span>Chat</span></div>
+      </a>
+      <p class="footer-desc">IA gratuita y accesible para estudiantes, desarrolladores y creativos. Tres modelos, un solo lugar.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">PRODUCTO</div>
+      <ul>
+        <li><a href="#">Funciones</a></li>
+        <li><a href="#">Modelos</a></li>
+        <li><a href="#">Precios</a></li>
+        <li><a href="#">Actualizaciones</a></li>
+        <li><a href="#">Roadmap</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">RECURSOS</div>
+      <ul>
+        <li><a href="#">Documentación</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Tutoriales</a></li>
+        <li><a href="#">API</a></li>
+        <li><a href="#">Estado del servicio</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">EMPRESA</div>
+      <ul>
+        <li><a href="#">Acerca de</a></li>
+        <li><a href="#">Contacto</a></li>
+        <li><a href="#">Privacidad</a></li>
+        <li><a href="#">Términos</a></li>
+        <li><a href="#">Cookies</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 NeuralChat · Hecho con ♥ para la comunidad</div>
+    <div class="footer-links">
+      <a href="#">Twitter / X</a>
+      <a href="#">GitHub</a>
+      <a href="#">Discord</a>
+      <a href="#">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── Scroll reveal ── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* ── Navbar scroll effect ── */
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  if (window.scrollY > 40) {
+    nav.style.borderBottomColor = 'rgba(30,37,64,0.8)';
+  } else {
+    nav.style.borderBottomColor = 'var(--border)';
+  }
+});
+</script>
+</body>
+</html>
