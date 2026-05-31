@@ -96,3 +96,5 @@ C:\Users\joser\source\repos\Proyecto_ai\Proyecto_ai\obj\Debug\net10.0\Proyecto_a
 C:\Users\joser\source\repos\Proyecto_ai\Proyecto_ai\obj\Debug\net10.0\Proyecto_ai.genruntimeconfig.cache
 C:\Users\joser\source\repos\Proyecto_ai\Proyecto_ai\obj\Debug\net10.0\ref\Proyecto_ai.dll
 C:\Users\joser\source\repos\Proyecto_ai\proyecto_ai\obj\Debug\net10.0\compressed\9i5x651r9f-{0}-h1rqin8g3j-h1rqin8g3j.gz
+C:\Users\joser\source\repos\Proyecto_ai\proyecto_ai\obj\Debug\net10.0\Proyecto_ai.sourcelink.json
+C:\Users\joser\source\repos\Proyecto_ai\proyecto_ai\obj\Debug\net10.0\compressed\sv1pw39wpv-{0}-eit43ee62q-eit43ee62q.gz
