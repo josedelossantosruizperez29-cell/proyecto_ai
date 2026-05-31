@@ -46,8 +46,12 @@
   </div>
 
   <div class="nav-actions">
-    <a class="nav-btn-ghost" href="#">Iniciar sesión</a>
-    <a class="nav-btn-primary" href="#">Comenzar gratis →</a>
+    <form asp-controller="Account" asp-action="Account" method="get">
+      <button class="nav-btn-ghost" type="submit">Iniciar seccion</button>
+    </form>
+   <form asp-controller="Account" asp-action="Register" method="get">
+      <button class="nav-btn-primary" type="submit">Comienza gratis -></button>
+    </form>
   </div>
 </nav>
 

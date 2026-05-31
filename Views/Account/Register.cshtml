@@ -1,0 +1,66 @@
+@{
+    ViewData["Title"] = "Register";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - Emma IA</title>
+  <link rel="stylesheet" href="/css/account.css">
+</head>
+<body>
+  <div class="screen auth-screen active" id="registerScreen">
+  <div class="orb o1"></div><div class="orb o2"></div>
+  <div class="acard">
+    <div class="a-logo">
+      <svg class="a-logo-icon pulse" viewBox="0 0 64 64" fill="none">
+        <rect width="64" height="64" rx="16" fill="#0c1225"/>
+        <rect x=".5" y=".5" width="63" height="63" rx="15.5" stroke="#5b9cf6" stroke-opacity=".28"/>
+        <use href="#brainG"/>
+        <defs>
+          <g id="brainG">
+            <filter id="fn2" x="-25%" y="-25%" width="150%" height="150%"><feGaussianBlur stdDeviation="1.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </g>
+        </defs>
+        <g filter="url(#fn2)">
+          <path d="M32 15C28 12.5 21 13.5 18 18.5C15.5 22.5 16 27 18.5 30.5C16.5 32 15.5 36 17 39.5C18.5 43.5 22.5 44.5 25.5 43C27 46 29.5 47.5 32 47" stroke="#5b9cf6" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <path d="M32 15C36 12.5 43 13.5 46 18.5C48.5 22.5 48 27 45.5 30.5C47.5 32 48.5 36 47 39.5C45.5 43.5 41.5 44.5 38.5 43C37 46 34.5 47.5 32 47" stroke="#5b9cf6" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <line x1="32" y1="15" x2="32" y2="47" stroke="#5b9cf6" stroke-width="1.4" stroke-dasharray="3 2.2" stroke-linecap="round"/>
+          <path d="M20 27.5Q26 25 32 27.5Q38 25 44 27.5" stroke="#5b9cf6" stroke-width="1.1" opacity=".75" fill="none" stroke-linecap="round"/>
+          <path d="M19 34Q26 31.5 32 34Q38 31.5 45 34" stroke="#5b9cf6" stroke-width="1.1" opacity=".75" fill="none" stroke-linecap="round"/>
+          <line x1="32" y1="13.5" x2="32" y2="8" stroke="#5b9cf6" stroke-width="1" opacity=".45"/>
+          <line x1="32" y1="48.5" x2="32" y2="56" stroke="#5b9cf6" stroke-width="1" opacity=".45"/>
+          <line x1="16.5" y1="31" x2="10" y2="31" stroke="#5b9cf6" stroke-width="1" opacity=".45"/>
+          <line x1="47.5" y1="31" x2="54" y2="31" stroke="#5b9cf6" stroke-width="1" opacity=".45"/>
+          <circle cx="32" cy="31" r="3.2" fill="#5b9cf6" opacity=".95"><animate attributeName="r" values="3.2;4.8;3.2" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values=".95;.35;.95" dur="2s" repeatCount="indefinite"/></circle>
+          <circle cx="32" cy="8" r="2.2" fill="#5b9cf6" opacity=".5"/>
+          <circle cx="32" cy="56" r="2.2" fill="#5b9cf6" opacity=".5"/>
+          <circle cx="10" cy="31" r="2.2" fill="#5b9cf6" opacity=".5"/>
+          <circle cx="54" cy="31" r="2.2" fill="#5b9cf6" opacity=".5"/>
+          <circle cx="20" cy="27.5" r="1.7" fill="#5b9cf6" opacity=".5"/>
+          <circle cx="44" cy="27.5" r="1.7" fill="#5b9cf6" opacity=".5"/>
+        </g>
+      </svg>
+      <div class="a-logo-name">Neural<span>Chat</span></div>
+    </div>
+
+    <div class="a-title">Crear tu cuenta gratuita</div>
+    <div class="a-sub">Accede a Gemini, Llama y Mistral sin costo — todo en un solo lugar</div>
+
+    <div class="name-row">
+      <div class="field"><label>Nombre</label><input type="text" placeholder="Juan"/></div>
+      <div class="field"><label>Apellido</label><input type="text" placeholder="Díaz"/></div>
+    </div>
+    <div class="field"><label>Correo electrónico</label><input type="email" placeholder="tu@email.com"/></div>
+    <div class="field"><label>Contraseña</label><div class="pw-wrap"><input type="password" placeholder="Mínimo 8 caracteres" id="rp1"/><button class="pw-eye" onclick="tpw('rp1',this)">👁</button></div></div>
+    <div class="field"><label>Confirmar contraseña</label><div class="pw-wrap"><input type="password" placeholder="Repite tu contraseña" id="rp2"/><button class="pw-eye" onclick="tpw('rp2',this)">👁</button></div></div>
+
+    <button class="a-btn" onclick="go('appScreen')">Crear cuenta gratis →</button>
+    <div class="a-link" style="font-size:11px;color:var(--text3);margin-top:12px;line-height:1.5">Al registrarte aceptas nuestros <a style="color:var(--text2)">Términos</a> y <a style="color:var(--text2)">Privacidad</a></div>
+    <div class="a-link">¿Ya tienes cuenta? <a onclick="go('loginScreen')">Inicia sesión</a></div>
+  </div>
+</div>
+  
+</body>
+</html>
