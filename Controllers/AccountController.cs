@@ -11,13 +11,5 @@ namespace proyecto_ai.Controllers
         {
             return View();
         }
-
-
-
-    [HttpGet]
-    public IActionResult Register()
-    {
-        return View();
-    }
     }
 }
