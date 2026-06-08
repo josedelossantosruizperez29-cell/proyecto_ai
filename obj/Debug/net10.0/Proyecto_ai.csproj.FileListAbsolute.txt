@@ -157,3 +157,4 @@ C:\Users\joser\source\repos\Proyecto_ai\Proyecto_ai\bin\Debug\net10.0\runtimes\w
 C:\Users\joser\source\repos\Proyecto_ai\Proyecto_ai\bin\Debug\net10.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\joser\source\repos\Proyecto_ai\Proyecto_ai\obj\Debug\net10.0\Proyecto_ai.csproj.AssemblyReference.cache
 C:\Users\joser\source\repos\Proyecto_ai\Proyecto_ai\obj\Debug\net10.0\Proyecto.FDD0FAB8.Up2Date
+C:\Users\joser\source\repos\Proyecto_ai\proyecto_ai\obj\Debug\net10.0\compressed\ogx3ngdhit-{0}-nlf9rtt7we-nlf9rtt7we.gz
