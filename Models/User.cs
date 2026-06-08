@@ -12,6 +12,6 @@ namespace Proyecto_ai.Models
         public string Apellido { get; set; }=string.Empty;
         public string Correo { get; set; }=string.Empty;
         public string PasswordHash { get; set; }=string.Empty;
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt=DateTime.Now;
     }
 }

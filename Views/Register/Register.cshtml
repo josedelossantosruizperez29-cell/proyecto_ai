@@ -1,6 +1,8 @@
 @{
     ViewData["Title"] = "Register";
 }
+@model Proyecto_ai.Models.RegisterViewModel
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,15 +50,23 @@
     <div class="a-title">Crear tu cuenta gratuita</div>
     <div class="a-sub">Accede a Gemini, Llama y Mistral sin costo — todo en un solo lugar</div>
 
+   <form method="post" asp-controller="Register" asp-action="Registrarme">
     <div class="name-row">
-      <div class="field"><label>Nombre</label><input type="text" placeholder="Santos"/></div>
-      <div class="field"><label>Apellido</label><input type="text" placeholder="La corte"/></div>
+      <div class="field"><label>Nombre</label><input asp-for="Nombre" name="Nombre" type="text" placeholder="Santos"/></div>
+      <div class="field"><label>Apellido</label><input asp-for="Apellido" name="Apellido" type="text" placeholder="La corte"/></div>
     </div>
-    <div class="field"><label>Correo electrónico</label><input type="email" placeholder="tu@email.com"/></div>
-    <div class="field"><label>Contraseña</label><div class="pw-wrap"><input type="password" placeholder="Mínimo 8 caracteres" id="rp1"/><button class="pw-eye" onclick="tpw('rp1',this)">👁</button></div></div>
-    <div class="field"><label>Confirmar contraseña</label><div class="pw-wrap"><input type="password" placeholder="Repite tu contraseña" id="rp2"/><button class="pw-eye" onclick="tpw('rp2',this)">👁</button></div></div>
+    <div class="field"><label>Correo electrónico</label><input asp-for="Correo" name="Correo" type="email" placeholder="tu@email.com"/></div>
+    <div class="field"><label>Contraseña</label><div class="pw-wrap"><input asp-for="Password" name="Password" type="password" placeholder="Mínimo 8 caracteres" id="rp1"/><button class="pw-eye" onclick="tpw('rp1',this)">👁</button></div></div>
+    <div class="field"><label>Confirmar contraseña</label><div class="pw-wrap"><input asp-for="ConfirPassword" name="ConfirPassword" type="password" placeholder="Repite tu contraseña" id="rp2"/><button class="pw-eye" onclick="tpw('rp2',this)">👁</button></div></div>
 
-    <button class="a-btn" onclick="go('appScreen')">Crear cuenta gratis →</button>
+    <button class="a-btn" type="submit">Crear cuenta gratis →</button>
+    </form>
+    @if(ViewBag.Error != null)
+{
+    <div style="color:red; margin-bottom:10px;">
+        @ViewBag.Error
+    </div>
+}
     <div class="a-link" style="font-size:11px;color:var(--text3);margin-top:12px;line-height:1.5">Al registrarte aceptas nuestros <a style="color:var(--text2)">Términos</a> y <a style="color:var(--text2)">Privacidad</a></div>
     <div class="a-link">¿Ya tienes cuenta? <a href="../Account/Account">Inicia sesión</a></div>
   </div>

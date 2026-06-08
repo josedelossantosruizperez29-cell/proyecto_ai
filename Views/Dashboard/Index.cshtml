@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emma AI - Chat Dashboard</title>
+    <link rel="stylesheet" href="~/css/dashboardstyle.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="ai-branding">
+                    <img src="https://image.qwenlm.ai/public_source/535da551-8c86-4c0e-81d5-981149995f2c/1d6d319b1-ac38-4458-a8cf-765abc281f1f.png" alt="Nexus AI" class="ai-logo">
+                    <span class="ai-name">Emma AI</span>
+                    <span class="ai-badge">Pro</span>
+                </div>
+                <button class="new-chat-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    Nuevo chat
+                </button>
+            </div>
+
+            <div class="chat-history" id="chatHistory">
+                <div class="chat-history-label">Hoy</div>
+                <div class="chat-item active" data-id="1" onclick="selectChat(this)">
+                    <svg class="chat-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    <span class="chat-item-text">Análisis de datos con Python</span>
+                    <button class="delete-chat" onclick="event.stopPropagation(); deleteChatItem(this)">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="chat-item" data-id="2" onclick="selectChat(this)">
+                    <svg class="chat-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    <span class="chat-item-text">Diseño UI/UX profesional</span>
+                    <button class="delete-chat" onclick="event.stopPropagation(); deleteChatItem(this)">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="chat-history-label">Ayer</div>
+                <div class="chat-item" data-id="3" onclick="selectChat(this)">
+                    <svg class="chat-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    <span class="chat-item-text">Ayuda con React hooks</span>
+                    <button class="delete-chat" onclick="event.stopPropagation(); deleteChatItem(this)">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="sidebar-profile">
+                <div class="profile-card" onclick="openSettings()">
+                    <div class="profile-avatar" id="sidebarAvatar">JD</div>
+                    <div class="profile-info">
+                        <div class="profile-name" id="sidebarName">Juan Díaz</div>
+                        <div class="profile-email" id="sidebarEmail">juan@email.com</div>
+                    </div>
+                    <svg class="profile-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="top-bar">
+                <div class="top-bar-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                    <div class="model-selector-wrapper">
+                        <select class="model-selector" id="modelSelector" onchange="changeModel()">
+                            <option value="nexus-pro">Nexus Pro</option>
+                            <option value="nexus-fast">Nexus Fast</option>
+                            <option value="nexus-creative">Nexus Creative</option>
+                        </select>
+                        <div class="model-selector-icon">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="model-badge pro" id="modelBadge">Pro</span>
+                </div>
+                <div class="top-bar-right">
+                    <button class="top-bar-btn" title="Compartir">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="18" cy="5" r="3"></circle>
+                            <circle cx="6" cy="12" r="3"></circle>
+                            <circle cx="18" cy="19" r="3"></circle>
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="chat-area" id="chatArea">
+                <div class="welcome-screen" id="welcomeScreen">
+                    <div class="welcome-icon">
+                        <img src="https://image.qwenlm.ai/public_source/535da551-8c86-4c0e-81d5-981149995f2c/1d6d319b1-ac38-4458-a8cf-765abc281f1f.png" alt="Nexus AI">
+                    </div>
+                    <h1 class="welcome-title">¿En qué puedo ayudarte?</h1>
+                    <p class="welcome-subtitle">Soy Nexus AI, tu asistente de inteligencia artificial. Selecciona un modelo y pregúntame lo que necesites.</p>
+                    <div class="suggestions">
+                        <div class="suggestion-card" onclick="useSuggestion('Explícame cómo funciona un API REST')">
+                            <div class="suggestion-title">Explicar conceptos</div>
+                            <div class="suggestion-desc">¿Cómo funciona un API REST?</div>
+                        </div>
+                        <div class="suggestion-card" onclick="useSuggestion('Escribe una función en JavaScript para ordenar un array')">
+                            <div class="suggestion-title">Escribir código</div>
+                            <div class="suggestion-desc">Función para ordenar arrays en JS</div>
+                        </div>
+                        <div class="suggestion-card" onclick="useSuggestion('Dame consejos para mejorar mi productividad')">
+                            <div class="suggestion-title">Consejos útiles</div>
+                            <div class="suggestion-desc">Mejorar productividad diaria</div>
+                        </div>
+                        <div class="suggestion-card" onclick="useSuggestion('Ayúdame a redactar un correo profesional')">
+                            <div class="suggestion-title">Redacción</div>
+                            <div class="suggestion-desc">Redactar correo profesional</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="messages-container" id="messagesContainer" style="display:none;"></div>
+            </div>
+
+            <div class="input-area">
+                <div class="input-container">
+                    <div class="input-box">
+                        <textarea id="messageInput" placeholder="Escribe tu mensaje..." rows="1" onkeydown="handleKeyDown(event)" oninput="autoResize(this)"></textarea>
+                        <button class="send-btn" id="sendBtn" onclick="sendMessage()" disabled>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="input-footer">Nexus AI puede cometer errores. Verifica la información importante.</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="settings-overlay" id="settingsOverlay" onclick="closeSettingsOnOverlay(event)">
+        <div class="settings-panel">
+            <div class="settings-header">
+                <h2 class="settings-title">Ajustes</h2>
+                <button class="settings-close" onclick="closeSettings()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="settings-body">
+                <div class="settings-section">
+                    <h3 class="settings-section-title">Perfil</h3>
+                    <div class="settings-field">
+                        <label class="settings-label">Nombre</label>
+                        <input type="text" class="settings-input" id="settingsFirstName" placeholder="Tu nombre" value="Juan">
+                    </div>
+                    <div class="settings-field">
+                        <label class="settings-label">Apellido</label>
+                        <input type="text" class="settings-input" id="settingsLastName" placeholder="Tu apellido" value="Díaz">
+                    </div>
+                    <div class="settings-field">
+                        <label class="settings-label">Correo electrónico</label>
+                        <input type="email" class="settings-input" id="settingsEmail" placeholder="tu@email.com" value="juan@email.com" disabled>
+                    </div>
+                    <button class="settings-btn btn-primary" onclick="saveProfile()" style="margin-top: 8px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                            <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                            <polyline points="7 3 7 8 15 8"></polyline>
+                        </svg>
+                        Guardar cambios
+                    </button>
+                </div>
+
+                <div class="settings-section">
+                    <h3 class="settings-section-title">Seguridad</h3>
+                    <div class="settings-field">
+                        <label class="settings-label">Contraseña actual</label>
+                        <input type="password" class="settings-input" id="currentPassword" placeholder="Ingresa tu contraseña actual">
+                    </div>
+                    <div class="settings-field">
+                        <label class="settings-label">Nueva contraseña</label>
+                        <input type="password" class="settings-input" id="newPassword" placeholder="Nueva contraseña">
+                    </div>
+                    <div class="settings-field">
+                        <label class="settings-label">Confirmar nueva contraseña</label>
+                        <input type="password" class="settings-input" id="confirmPassword" placeholder="Confirma la nueva contraseña">
+                    </div>
+                    <button class="settings-btn btn-secondary" onclick="changePassword()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                        Cambiar contraseña
+                    </button>
+                </div>
+
+                <div class="settings-section">
+                    <h3 class="settings-section-title">Zona de peligro</h3>
+                    <div class="danger-zone">
+                        <div class="danger-zone-title">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                                <line x1="12" y1="9" x2="12" y2="13"></line>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                            Eliminar cuenta
+                        </div>
+                        <p class="danger-zone-desc">Una vez que elimines tu cuenta, no podrás recuperar tus datos ni tu historial. Esta acción es irreversible.</p>
+                        <button class="settings-btn btn-danger" onclick="openDeleteModal()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                            </svg>
+                            Eliminar mi cuenta
+                        </button>
+                    </div>
+                </div>
+
+                <div class="settings-section" style="padding-top: 8px; border-top: 1px solid var(--gray-300);">
+                    <button class="settings-btn btn-logout" onclick="logout()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                            <polyline points="16 17 21 12 16 7"></polyline>
+                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                        </svg>
+                        Cerrar sesión
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="deleteModal">
+        <div class="modal-box">
+            <div class="modal-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                </svg>
+            </div>
+            <h3 class="modal-title">¿Eliminar cuenta?</h3>
+            <p class="modal-desc">Esta acción no se puede deshacer. Se eliminarán todos tus datos, historial y configuraciones de forma permanente.</p>
+            <div class="modal-actions">
+                <button class="settings-btn btn-secondary" onclick="closeDeleteModal()">Cancelar</button>
+                <button class="settings-btn btn-danger" style="background: var(--danger); color: white; border: none;" onclick="confirmDelete()">Sí, eliminar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+
+</body>
+</html>
+
