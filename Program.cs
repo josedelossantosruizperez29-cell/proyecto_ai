@@ -1,8 +1,26 @@
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 using Proyecto_ai.Data;
 using Proyecto_ai.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Render inyecta $PORT. Sin esto el deploy falla con "port scan timeout".
+// Dockerfile tambien pasa --urls, esto es respaldo por si se despliega sin Docker.
+var port = Environment.GetEnvironmentVariable("PORT");
+if (!string.IsNullOrWhiteSpace(port))
+{
+    builder.WebHost.UseUrls($"http://*:{port}");
+}
+
+// Render termina TLS en su proxy y reenvia en http interno.
+// Sin ForwardedHeaders, UseHttpsRedirection entra en loop y las cookies fallan.
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+    options.KnownIPNetworks.Clear();
+    options.KnownProxies.Clear();
+});
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddAuthentication("EmmaCookie")
@@ -27,6 +45,8 @@ builder.Services.AddHttpClient<IAiChatService, AiChatService>(client =>
 });
 
 var app = builder.Build();
+
+app.UseForwardedHeaders();
 
 if (!app.Environment.IsDevelopment())
 {

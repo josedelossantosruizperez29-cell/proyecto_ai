@@ -13,17 +13,17 @@ namespace Proyecto_ai.Models
         public string Apellido { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "El correo es obligatorio.")]
-        [EmailAddress(ErrorMessage = "Ingresa un correo valido.")]
+        [EmailAddress(ErrorMessage = "Ingresa un correo válido.")]
         [StringLength(180)]
         public string Correo { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "La contrasena es obligatoria.")]
-        [MinLength(8, ErrorMessage = "La contrasena debe tener al menos 8 caracteres.")]
-        [RegularExpression(@"^(?=.*[A-Za-z])(?=.*\d).+$", ErrorMessage = "La contrasena debe incluir letras y numeros.")]
+        [Required(ErrorMessage = "La contraseña es obligatoria.")]
+        [MinLength(8, ErrorMessage = "La contraseña debe tener al menos 8 caracteres.")]
+        [RegularExpression(@"^(?=.*[A-Za-z])(?=.*\d).+$", ErrorMessage = "La contraseña debe incluir letras y números.")]
         public string Password { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Confirma tu contrasena.")]
-        [Compare(nameof(Password), ErrorMessage = "Las contrasenas no coinciden.")]
-        public string ConfirPassword { get; set; } = string.Empty;
+        [Required(ErrorMessage = "Confirma tu contraseña.")]
+        [Compare(nameof(Password), ErrorMessage = "Las contraseñas no coinciden.")]
+        public string ConfirmPassword { get; set; } = string.Empty;
     }
 }

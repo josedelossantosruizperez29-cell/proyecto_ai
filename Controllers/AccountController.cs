@@ -12,10 +12,12 @@ namespace Proyecto_ai.Controllers
     public class AccountController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly ILogger<AccountController> _logger;
 
-        public AccountController(AppDbContext context)
+        public AccountController(AppDbContext context, ILogger<AccountController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -38,27 +40,36 @@ namespace Proyecto_ai.Controllers
                 return View("Account", model);
             }
 
-            var email = model.Correo.Trim().ToLowerInvariant();
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Correo == email);
-            if (user == null)
+            try
             {
-                ModelState.AddModelError(string.Empty, "El correo o la contrasena son incorrectos.");
+                var email = model.Correo.Trim().ToLowerInvariant();
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.Correo == email);
+                if (user == null)
+                {
+                    ModelState.AddModelError(string.Empty, "El correo o la contraseña son incorrectos.");
+                    return View("Account", model);
+                }
+
+                var hasher = new PasswordHasher<User>();
+                var result = hasher.VerifyHashedPassword(user, user.PasswordHash, model.Password);
+                if (result == PasswordVerificationResult.Failed)
+                {
+                    ModelState.AddModelError(string.Empty, "El correo o la contraseña son incorrectos.");
+                    return View("Account", model);
+                }
+
+                user.LastLoginAt = DateTime.UtcNow;
+                await _context.SaveChangesAsync();
+
+                await SignInAsync(user);
+                return RedirectToAction("Index", "Dashboard");
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, "No fue posible completar el inicio de sesion.");
+                ModelState.AddModelError(string.Empty, "No pudimos validar tu cuenta en este momento. Intenta de nuevo en unos minutos.");
                 return View("Account", model);
             }
-
-            var hasher = new PasswordHasher<User>();
-            var result = hasher.VerifyHashedPassword(user, user.PasswordHash, model.Password);
-            if (result == PasswordVerificationResult.Failed)
-            {
-                ModelState.AddModelError(string.Empty, "El correo o la contrasena son incorrectos.");
-                return View("Account", model);
-            }
-
-            user.LastLoginAt = DateTime.UtcNow;
-            await _context.SaveChangesAsync();
-
-            await SignInAsync(user);
-            return RedirectToAction("Index", "Dashboard");
         }
 
         [Authorize]

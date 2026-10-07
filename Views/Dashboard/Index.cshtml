@@ -10,6 +10,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewData["Title"]</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/css/dashboardstyle.css" asp-append-version="true">
 </head>
 <body>
@@ -19,7 +22,7 @@
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <div class="ai-branding">
-                    <div class="ai-logo-text">EA</div>
+                    <div class="ai-logo-text">E</div>
                     <span class="ai-name">Emma AI</span>
                     <span class="ai-badge">Free</span>
                 </div>
@@ -34,7 +37,7 @@
 
             <div class="chat-history" id="chatHistory">
                 <div class="chat-history-label">Historial</div>
-                <div class="empty-history" id="emptyHistory">Aun no tienes conversaciones.</div>
+                <div class="empty-history" id="emptyHistory">Aún no tienes conversaciones.</div>
             </div>
 
             <div class="sidebar-profile">
@@ -54,7 +57,7 @@
         <main class="main-content">
             <div class="top-bar">
                 <div class="top-bar-left">
-                    <button class="menu-toggle" type="button" onclick="toggleSidebar()" title="Menu">
+                    <button class="menu-toggle" type="button" onclick="toggleSidebar()" title="Menú">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="3" y1="12" x2="21" y2="12"></line>
                             <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -96,24 +99,24 @@
 
             <div class="chat-area" id="chatArea">
                 <div class="welcome-screen" id="welcomeScreen">
-                    <div class="welcome-icon text-logo">EA</div>
-                    <h1 class="welcome-title">En que puedo ayudarte?</h1>
-                    <p class="welcome-subtitle">Elige un modelo gratuito y un modo de pensamiento. EMMA guarda tu historial y responde con el contexto de la conversacion.</p>
+                    <div class="welcome-icon">E</div>
+                    <h1 class="welcome-title">¿En qué puedo ayudarte?</h1>
+                    <p class="welcome-subtitle">Elige un modelo y un modo de pensamiento. Emma guarda tu historial y responde con el contexto de la conversación.</p>
                     <div class="suggestions">
-                        <button class="suggestion-card" type="button" onclick="useSuggestion('Explicame como funciona un API REST con un ejemplo corto')">
+                        <button class="suggestion-card" type="button" onclick="useSuggestion('Explícame cómo funciona un API REST con un ejemplo corto')">
                             <span class="suggestion-title">Explicar conceptos</span>
                             <span class="suggestion-desc">API REST con ejemplo</span>
                         </button>
-                        <button class="suggestion-card" type="button" onclick="useSuggestion('Revisa este codigo y dime como mejorarlo')">
-                            <span class="suggestion-title">Revisar codigo</span>
+                        <button class="suggestion-card" type="button" onclick="useSuggestion('Revisa este código y dime cómo mejorarlo')">
+                            <span class="suggestion-title">Revisar código</span>
                             <span class="suggestion-desc">Ayuda para programar</span>
                         </button>
-                        <button class="suggestion-card" type="button" onclick="useSuggestion('Ayudame a redactar un correo profesional')">
-                            <span class="suggestion-title">Redaccion</span>
+                        <button class="suggestion-card" type="button" onclick="useSuggestion('Ayúdame a redactar un correo profesional')">
+                            <span class="suggestion-title">Redacción</span>
                             <span class="suggestion-desc">Correo profesional</span>
                         </button>
                         <button class="suggestion-card" type="button" onclick="useSuggestion('Dame un plan simple para terminar mi proyecto hoy')">
-                            <span class="suggestion-title">Plan rapido</span>
+                            <span class="suggestion-title">Plan rápido</span>
                             <span class="suggestion-desc">Organizar tareas</span>
                         </button>
                     </div>
@@ -133,26 +136,39 @@
                             </svg>
                         </button>
                     </div>
-                    <div class="input-footer">EMMA AI — Desarrollado por Jose de los Santos. Puede cometer errores, verifica la informacion.</div>
+                    <div class="input-footer">Emma AI — Puede cometer errores, verifica la información.</div>
                 </div>
             </div>
         </main>
     </div>
 
     <div class="settings-overlay" id="settingsOverlay" onclick="closeSettingsOnOverlay(event)">
-        <div class="settings-panel">
+        <aside class="settings-panel">
             <div class="settings-header">
-                <h2 class="settings-title">Ajustes</h2>
+                <div class="settings-header-left">
+                    <div class="settings-avatar" id="settingsAvatar">@Model.Initials</div>
+                    <div class="settings-header-info">
+                        <h2 class="settings-title" id="settingsName">@Model.Nombre @Model.Apellido</h2>
+                        <p class="settings-subtitle" id="settingsEmail">@Model.Correo</p>
+                    </div>
+                </div>
                 <button class="settings-close" type="button" onclick="closeSettings()" title="Cerrar">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="18" y1="6" x2="6" y2="18"></line>
                         <line x1="6" y1="6" x2="18" y2="18"></line>
                     </svg>
                 </button>
             </div>
+
             <div class="settings-body">
                 <div class="settings-section">
-                    <h3 class="settings-section-title">Perfil</h3>
+                    <h3 class="settings-section-title">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        Perfil
+                    </h3>
                     <div class="settings-field">
                         <label class="settings-label" for="settingsFirstName">Nombre</label>
                         <input type="text" class="settings-input" id="settingsFirstName" value="@Model.Nombre">
@@ -162,39 +178,100 @@
                         <input type="text" class="settings-input" id="settingsLastName" value="@Model.Apellido">
                     </div>
                     <div class="settings-field">
-                        <label class="settings-label" for="settingsEmail">Correo electronico</label>
+                        <label class="settings-label" for="settingsEmail">Correo electrónico</label>
                         <input type="email" class="settings-input" id="settingsEmail" value="@Model.Correo" disabled>
+                        <p class="settings-hint">El correo no se puede modificar</p>
                     </div>
-                    <button class="settings-btn btn-primary" type="button" onclick="saveProfile()">Guardar cambios</button>
+                    <button class="settings-btn btn-primary" type="button" onclick="saveProfile()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                            <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                            <polyline points="7 3 7 8 15 8"></polyline>
+                        </svg>
+                        Guardar cambios
+                    </button>
                 </div>
 
                 <div class="settings-section">
-                    <h3 class="settings-section-title">Seguridad</h3>
+                    <h3 class="settings-section-title">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                        Seguridad
+                    </h3>
                     <div class="settings-field">
-                        <label class="settings-label" for="currentPassword">Contrasena actual</label>
-                        <input type="password" class="settings-input" id="currentPassword">
+                        <label class="settings-label" for="currentPassword">Contraseña actual</label>
+                        <input type="password" class="settings-input" id="currentPassword" placeholder="••••••••">
                     </div>
                     <div class="settings-field">
-                        <label class="settings-label" for="newPassword">Nueva contrasena</label>
-                        <input type="password" class="settings-input" id="newPassword">
+                        <label class="settings-label" for="newPassword">Nueva contraseña</label>
+                        <input type="password" class="settings-input" id="newPassword" placeholder="Mínimo 8 caracteres">
                     </div>
                     <div class="settings-field">
-                        <label class="settings-label" for="confirmPassword">Confirmar nueva contrasena</label>
-                        <input type="password" class="settings-input" id="confirmPassword">
+                        <label class="settings-label" for="confirmPassword">Confirmar nueva contraseña</label>
+                        <input type="password" class="settings-input" id="confirmPassword" placeholder="Repite la contraseña">
                     </div>
-                    <button class="settings-btn btn-secondary" type="button" onclick="changePassword()">Cambiar contrasena</button>
+                    <button class="settings-btn btn-secondary" type="button" onclick="changePassword()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path>
+                        </svg>
+                        Cambiar contraseña
+                    </button>
                 </div>
 
                 <div class="settings-section">
+                    <h3 class="settings-section-title">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                        </svg>
+                        Preferencias
+                    </h3>
+                    <div class="settings-field">
+                        <label class="settings-label">Tema de la interfaz</label>
+                        <div class="settings-segmented">
+                            <button class="settings-segment active" type="button">Oscuro</button>
+                            <button class="settings-segment" type="button">Claro</button>
+                            <button class="settings-segment" type="button">Sistema</button>
+                        </div>
+                    </div>
+                    <div class="settings-field">
+                        <label class="settings-label">Idioma</label>
+                        <select id="settingsLanguage" class="settings-select">
+                            <option value="es" selected>Español</option>
+                            <option value="en">English</option>
+                            <option value="pt">Português</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="settings-section settings-section--danger">
+                    <h3 class="settings-section-title">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                            <line x1="12" y1="9" x2="12" y2="13"></line>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
+                        Cuenta de usuario
+                    </h3>
                     <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
-                        <button class="settings-btn btn-logout" type="submit">Cerrar sesion</button>
+                        <button class="settings-btn btn-logout" type="submit">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                <polyline points="16 17 21 12 16 7"></polyline>
+                                <line x1="21" y1="12" x2="9" y2="12"></line>
+                            </svg>
+                            Cerrar sesión
+                        </button>
                     </form>
                 </div>
             </div>
-        </div>
+        </aside>
     </div>
 
     <div class="toast-container" id="toastContainer"></div>
     <script src="~/js/dashboard.js" asp-append-version="true"></script>
+    <script src="~/js/control.js" asp-append-version="true"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 @model Proyecto_ai.Models.LoginViewModel
 @{
     Layout = null;
-    ViewData["Title"] = "Iniciar sesion - Emma AI";
+    ViewData["Title"] = "Iniciar sesión - Emma AI";
 }
 
 <!DOCTYPE html>
@@ -9,64 +9,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#09090b">
     <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="~/css/account.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/auth.css" asp-append-version="true">
 </head>
 <body>
-    <div class="screen auth-screen active" id="loginScreen">
-        <div class="orb o1"></div>
-        <div class="orb o2"></div>
-
-        <div class="acard">
-            <div class="a-logo">
-                <svg class="a-logo-icon pulse" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-                    <rect width="64" height="64" rx="16" fill="#0c1225" />
-                    <rect x=".5" y=".5" width="63" height="63" rx="15.5" stroke="#5b9cf6" stroke-opacity=".28" />
-                    <path d="M32 15C28 12.5 21 13.5 18 18.5C15.5 22.5 16 27 18.5 30.5C16.5 32 15.5 36 17 39.5C18.5 43.5 22.5 44.5 25.5 43C27 46 29.5 47.5 32 47" stroke="#5b9cf6" stroke-width="2" stroke-linecap="round" />
-                    <path d="M32 15C36 12.5 43 13.5 46 18.5C48.5 22.5 48 27 45.5 30.5C47.5 32 48.5 36 47 39.5C45.5 43.5 41.5 44.5 38.5 43C37 46 34.5 47.5 32 47" stroke="#5b9cf6" stroke-width="2" stroke-linecap="round" />
-                    <line x1="32" y1="15" x2="32" y2="47" stroke="#5b9cf6" stroke-width="1.4" stroke-dasharray="3 2.2" />
-                    <circle cx="32" cy="31" r="3.2" fill="#5b9cf6" />
-                </svg>
-                <div class="a-logo-name">Emma<span>AI</span></div>
+    <main class="auth-layout">
+        <aside class="auth-brand-panel">
+            <div class="auth-brand-top">
+                <a class="auth-brand" href="/">
+                    <div class="auth-logo">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <span class="auth-brand-name">Emma<span>AI</span></span>
+                </a>
+                <span class="auth-product-label"><span class="status-dot"></span> Tu espacio de IA</span>
             </div>
 
-            <div class="a-title">Bienvenido de vuelta</div>
-            <div class="a-sub">Inicia sesion para usar tus 3 modelos gratuitos.</div>
+            <section class="auth-brand-copy">
+                <span class="auth-eyebrow">Una cuenta, más posibilidades</span>
+                <h1>Ideas grandes.<br><span>Un espacio para hacerlas realidad.</span></h1>
+                <p>Reúne tus conversaciones y accede a distintos modelos de IA desde un solo lugar.</p>
+            </section>
 
-            @if (TempData["Success"] != null)
-            {
-                <div class="auth-alert success">@TempData["Success"]</div>
-            }
-
-            <form asp-controller="Account" asp-action="Login" method="post" novalidate>
-                <div asp-validation-summary="ModelOnly" class="auth-alert error"></div>
-
-                <div class="field">
-                    <label asp-for="Correo">Correo electronico</label>
-                    <input asp-for="Correo" type="email" placeholder="tu@email.com" autocomplete="email" />
-                    <span asp-validation-for="Correo" class="field-error"></span>
+            <div class="auth-preview">
+                <div class="preview-heading">
+                    <span class="preview-avatar">E</span>
+                    <span class="preview-title">
+                        <strong>Tu espacio de trabajo</strong>
+                        <small>Listo para continuar</small>
+                    </span>
+                    <span class="preview-live"><span class="status-dot"></span> Activo</span>
                 </div>
+                <p class="preview-message">Tus ideas y conversaciones te esperan.</p>
+                <div class="preview-models">
+                    <span>Nemotron</span>
+                    <span>Laguna</span>
+                    <span>North Mini Code</span>
+                </div>
+            </div>
 
-                <div class="field">
-                    <label asp-for="Password">Contrasena</label>
-                    <div class="pw-wrap">
-                        <input asp-for="Password" type="password" placeholder="Minimo 8 caracteres" id="loginPassword" autocomplete="current-password" />
-                        <button class="pw-eye" type="button" onclick="togglePassword('loginPassword')">ver</button>
+            <p class="auth-brand-footnote">Una buena conversación puede llevarte más lejos.</p>
+        </aside>
+
+        <section class="auth-form-panel">
+            <div class="auth-top-link">
+                <a href="/">Volver al inicio</a>
+                <span>Acceso protegido</span>
+            </div>
+
+            <div class="auth-form-content">
+                <header class="auth-heading">
+                    <span class="auth-eyebrow">Bienvenido de nuevo</span>
+                    <h2>Qué bueno verte</h2>
+                    <p>Inicia sesión para volver a tus conversaciones.</p>
+                </header>
+
+                @if (TempData["Success"] != null)
+                {
+                    <div class="auth-alert auth-alert--success" role="status">@TempData["Success"]</div>
+                }
+
+                <form asp-controller="Account" asp-action="Login" method="post" novalidate>
+                    <div asp-validation-summary="ModelOnly" class="auth-alert" role="alert"></div>
+
+                    <div class="auth-field">
+                        <label asp-for="Correo">Correo electrónico</label>
+                        <input asp-for="Correo" class="auth-input" type="email" placeholder="nombre@correo.com" autocomplete="email" />
+                        <span asp-validation-for="Correo" class="field-error"></span>
                     </div>
-                    <span asp-validation-for="Password" class="field-error"></span>
-                </div>
 
-                <button class="a-btn" type="submit">Iniciar sesion</button>
-                <div class="a-link">No tienes cuenta? <a asp-controller="Register" asp-action="Register">Registrate gratis</a></div>
-            </form>
-        </div>
-    </div>
+                    <div class="auth-field">
+                        <label asp-for="Password">Contraseña</label>
+                        <div class="auth-password-wrap">
+                            <input asp-for="Password" class="auth-input" type="password" placeholder="Tu contraseña" id="loginPassword" autocomplete="current-password" />
+                            <button class="password-toggle" type="button" data-password-toggle="loginPassword" aria-label="Mostrar contraseña" aria-pressed="false">Mostrar</button>
+                        </div>
+                        <span asp-validation-for="Password" class="field-error"></span>
+                    </div>
+
+                    <button class="auth-submit" type="submit">Iniciar sesión</button>
+                </form>
+
+                <p class="auth-switch">¿Aún no tienes cuenta? <a asp-controller="Register" asp-action="Register">Crea una gratis</a></p>
+            </div>
+
+            <p class="auth-form-footnote">Inicia sesión con el correo y la contraseña de tu cuenta.</p>
+        </section>
+    </main>
 
     <script>
-        function togglePassword(id) {
-            const input = document.getElementById(id);
-            input.type = input.type === 'password' ? 'text' : 'password';
-        }
+        document.querySelectorAll('[data-password-toggle]').forEach((button) => {
+            button.addEventListener('click', () => {
+                const input = document.getElementById(button.dataset.passwordToggle);
+                const show = input.type === 'password';
+                input.type = show ? 'text' : 'password';
+                button.textContent = show ? 'Ocultar' : 'Mostrar';
+                button.setAttribute('aria-pressed', String(show));
+                button.setAttribute('aria-label', show ? 'Ocultar contraseña' : 'Mostrar contraseña');
+            });
+        });
     </script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
