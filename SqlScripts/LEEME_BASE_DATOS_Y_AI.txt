@@ -1,0 +1,35 @@
+Emma AI - pasos de produccion local
+
+1. Base de datos
+   Ejecuta este archivo en SQL Server Management Studio:
+   C:\Users\joser\Documents\EmmaAi\proyecto_ai\SqlScripts\production_schema.sql
+
+   Ese script crea o actualiza estas tablas:
+   - users
+   - ai_conversations
+   - ai_messages
+   - user_ai_preferences
+
+2. API key de IA
+   Los modelos gratuitos se consumen por OpenRouter. Configura una variable de entorno:
+
+   setx OPENROUTER_API_KEY "tu_api_key_de_openrouter"
+
+   Tambien puedes poner la clave en appsettings.json, seccion:
+   OpenRouter:ApiKey
+
+3. Modelos configurados
+   - nvidia/nemotron-3-super-120b-a12b:free
+   - poolside/laguna-m.1:free
+   - cohere/north-mini-code:free
+
+4. Modos de pensamiento
+   - rapido: responde mas corto y con menor espera
+   - balanceado: detalle medio
+   - profundo: mas tokens y mas analisis
+
+5. Ejecutar app
+   dotnet run --urls http://127.0.0.1:5088
+
+Nota: desde esta terminal SQL Server rechazo la autenticacion integrada por SSPI.
+Si te pasa igual, usa una cadena de conexion con usuario SQL Server en appsettings.json.

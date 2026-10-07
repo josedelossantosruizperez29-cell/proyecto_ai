@@ -1,0 +1,15 @@
+# Visual Studio
+.vs/
+bin/
+obj/
+
+# JetBrains Rider
+.idea/
+
+# User-specific files
+*.user
+*.suo
+
+# Secrets / local configuration
+appsettings.Local.json
+appsettings.Development.json
