@@ -1351,3 +1351,11 @@ body {
         max-height: 90vh;
     }
 }
+
+/* Logo imagen Emma AI */
+img.ai-logo-text {
+    padding: 0;
+    object-fit: cover;
+    background: none;
+}
+

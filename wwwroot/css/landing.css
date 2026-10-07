@@ -1162,3 +1162,12 @@ button {
         display: none;
     }
 }
+
+/* Logo imagen Emma AI */
+img.nav-brand-icon, img.footer-logo-icon {
+    padding: 0;
+    object-fit: cover;
+    background: none;
+    overflow: hidden;
+}
+
