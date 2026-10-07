@@ -1,15 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Proyecto_ai.Data;
 using Proyecto_ai.Models;
+
 namespace Proyecto_ai.Controllers
 {
-    public class registerController : Controller
+    public class RegisterController : Controller
     {
+        private readonly AppDbContext _context;
 
-       private readonly AppDbContext _context;
-
-        public registerController(AppDbContext context)
+        public RegisterController(AppDbContext context)
         {
             _context = context;
         }
@@ -17,49 +18,51 @@ namespace Proyecto_ai.Controllers
         [HttpGet]
         public IActionResult Register()
         {
-            return View();
+            if (User.Identity?.IsAuthenticated == true)
+            {
+                return RedirectToAction("Index", "Dashboard");
+            }
+
+            return View(new RegisterViewModel());
         }
+
         [HttpPost]
-        public IActionResult Registrarme(RegisterViewModel model)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Registrarme(RegisterViewModel model)
         {
-            if (model.Password == null || model.ConfirPassword == null || model.Nombre == null || model.Apellido == null || model.Correo == null)
+            if (!ModelState.IsValid)
             {
-                ViewBag.Error = "Todos los campos son obligatorios";
-                return View("Register");
-            }
-             if (_context.Users.Any(u => u.Correo == model.Correo))
-            {
-                ViewBag.Error = "El correo ya esta registrado";
                 return View("Register", model);
             }
 
-
-            if(model.Password != model.ConfirPassword)
+            var email = model.Correo.Trim().ToLowerInvariant();
+            if (await _context.Users.AnyAsync(u => u.Correo == email))
             {
-                ViewBag.Error = "Las contraseñas no coinciden";
+                ModelState.AddModelError(nameof(model.Correo), "El correo ya esta registrado.");
                 return View("Register", model);
-            }
-
-            if (model.Password.Length < 8)
-            {
-                ViewBag.Error = "La contraseñas debe tener al menos 8 caracteres";
-                return View("Register", model);
-                
             }
 
             var hasher = new PasswordHasher<User>();
             var user = new User
             {
-                Nombre = model.Nombre,
-                Apellido = model.Apellido,
-                Correo = model.Correo,
+                Nombre = model.Nombre.Trim(),
+                Apellido = model.Apellido.Trim(),
+                Correo = email,
+                CreatedAt = DateTime.UtcNow
             };
-            
-            user.PasswordHash=hasher.HashPassword(user, model.Password);
+
+            user.PasswordHash = hasher.HashPassword(user, model.Password);
+            user.AiPreference = new UserAiPreference
+            {
+                DefaultModelId = AiModelCatalog.DefaultModelId,
+                ThinkingMode = ThinkingModeCatalog.DefaultMode
+            };
+
             _context.Users.Add(user);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
+
+            TempData["Success"] = "Cuenta creada. Inicia sesion para continuar.";
             return RedirectToAction("Account", "Account");
-            
         }
     }
 }
