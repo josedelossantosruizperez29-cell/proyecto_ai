@@ -29,7 +29,7 @@ async function loadConversations() {
 function renderConversations() {
     const container = document.getElementById('chatHistory');
     const empty = state.conversations.length === 0
-        ? '<div class="empty-history" id="emptyHistory">Aun no tienes conversaciones.</div>'
+        ? '<div class="empty-history" id="emptyHistory">Aún no tienes conversaciones.</div>'
         : '';
 
     container.innerHTML = `<div class="chat-history-label">Historial</div>${empty}`;
@@ -68,7 +68,7 @@ async function selectChat(conversationId) {
 
     try {
         const response = await fetch(`/api/chat/conversations/${conversationId}/messages`, { credentials: 'same-origin' });
-        if (!response.ok) throw new Error('No se pudo abrir la conversacion.');
+        if (!response.ok) throw new Error('No se pudo abrir la conversación.');
         const messages = await response.json();
         messages.forEach(addMessage);
         scrollToBottom();
@@ -180,14 +180,14 @@ function addMessage(message) {
 
     const avatar = document.createElement('div');
     avatar.className = 'message-avatar';
-    avatar.textContent = message.role === 'user' ? 'TU' : 'EA';
+    avatar.textContent = message.role === 'user' ? 'Tú' : 'E';
 
     const content = document.createElement('div');
     content.className = 'message-content';
 
     const role = document.createElement('div');
     role.className = 'message-role';
-    role.textContent = message.role === 'user' ? 'Tu' : 'EMMA';
+    role.textContent = message.role === 'user' ? 'Tú' : 'Emma';
 
     const text = document.createElement('div');
     text.className = 'message-text';
@@ -209,7 +209,6 @@ function addMessage(message) {
 function renderMarkdown(text) {
     if (!text) return '';
 
-    // Extract code blocks first to protect them from other parsing
     const codeBlocks = [];
     text = text.replace(/```(\w*)\n([\s\S]*?)```/g, (match, lang, code) => {
         const idx = codeBlocks.length;
@@ -217,7 +216,6 @@ function renderMarkdown(text) {
         return `%%CODEBLOCK_${idx}%%`;
     });
 
-    // Process line by line
     const lines = text.split('\n');
     let html = '';
     let inList = false;
@@ -226,7 +224,6 @@ function renderMarkdown(text) {
     for (let i = 0; i < lines.length; i++) {
         let line = lines[i];
 
-        // Check for code block placeholder
         const codeMatch = line.match(/%%CODEBLOCK_(\d+)%%/);
         if (codeMatch) {
             if (inList) { html += listType === 'ul' ? '</ul>' : '</ol>'; inList = false; }
@@ -242,7 +239,6 @@ function renderMarkdown(text) {
             continue;
         }
 
-        // Headers
         if (line.startsWith('### ')) {
             if (inList) { html += listType === 'ul' ? '</ul>' : '</ol>'; inList = false; }
             html += `<h4 class="md-h3">${inlineFormat(line.slice(4))}</h4>`;
@@ -259,7 +255,6 @@ function renderMarkdown(text) {
             continue;
         }
 
-        // Unordered list
         const ulMatch = line.match(/^(\s*)[*\-+]\s+(.+)/);
         if (ulMatch) {
             if (!inList || listType !== 'ul') {
@@ -272,7 +267,6 @@ function renderMarkdown(text) {
             continue;
         }
 
-        // Ordered list
         const olMatch = line.match(/^(\s*)\d+\.\s+(.+)/);
         if (olMatch) {
             if (!inList || listType !== 'ol') {
@@ -285,7 +279,6 @@ function renderMarkdown(text) {
             continue;
         }
 
-        // Close list if current line is not a list item
         if (inList && line.trim() === '') {
             html += listType === 'ul' ? '</ul>' : '</ol>';
             inList = false;
@@ -296,13 +289,11 @@ function renderMarkdown(text) {
             inList = false;
         }
 
-        // Empty line = paragraph break
         if (line.trim() === '') {
             html += '<br>';
             continue;
         }
 
-        // Normal paragraph
         html += `<p>${inlineFormat(line)}</p>`;
     }
 
@@ -313,13 +304,10 @@ function renderMarkdown(text) {
 
 function inlineFormat(text) {
     text = escapeHtml(text);
-    // Bold
     text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
     text = text.replace(/__(.+?)__/g, '<strong>$1</strong>');
-    // Italic
     text = text.replace(/\*(.+?)\*/g, '<em>$1</em>');
     text = text.replace(/_(.+?)_/g, '<em>$1</em>');
-    // Inline code
     text = text.replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>');
     return text;
 }
@@ -335,7 +323,6 @@ function highlightSyntax(code, lang) {
     code = escapeHtml(code);
     lang = (lang || '').toLowerCase();
 
-    // Language-specific keyword sets
     const keywords = {
         javascript: /\b(const|let|var|function|return|if|else|for|while|do|switch|case|break|continue|new|this|class|extends|import|export|from|default|try|catch|finally|throw|async|await|yield|typeof|instanceof|in|of|null|undefined|true|false|void|delete|static|get|set|super|constructor)\b/g,
         python: /\b(def|class|if|elif|else|for|while|return|import|from|as|try|except|finally|raise|with|yield|lambda|pass|break|continue|and|or|not|is|in|None|True|False|self|print|global|nonlocal|assert|del|async|await)\b/g,
@@ -349,10 +336,8 @@ function highlightSyntax(code, lang) {
         bash: /\b(echo|cd|ls|mkdir|rm|cp|mv|cat|grep|find|chmod|chown|sudo|apt|yum|npm|pip|git|docker|export|source|if|then|else|elif|fi|for|do|done|while|until|case|esac|function|return|exit|read|set|unset|test|true|false)\b/g,
     };
 
-    // Apply string highlighting (double and single quotes)
     code = code.replace(/(["'])(?:(?=(\\?))\2[\s\S])*?\1/g, '<span class="syn-string">$&</span>');
 
-    // Apply comment highlighting
     code = code.replace(/(\/\/.*$)/gm, '<span class="syn-comment">$&</span>');
     code = code.replace(/(#.*$)/gm, function(match) {
         if (lang === 'python' || lang === 'bash' || lang === 'ruby' || lang === 'yaml') {
@@ -361,16 +346,13 @@ function highlightSyntax(code, lang) {
         return match;
     });
 
-    // Apply keyword highlighting
     const kwSet = keywords[lang] || keywords['javascript'];
     if (kwSet) {
         code = code.replace(kwSet, function(match) {
-            // Don't highlight if already inside a span
             return '<span class="syn-keyword">' + match + '</span>';
         });
     }
 
-    // Apply number highlighting
     code = code.replace(/\b(\d+\.?\d*)\b/g, '<span class="syn-number">$1</span>');
 
     return code;
@@ -397,9 +379,9 @@ function addTyping() {
     wrapper.className = 'message assistant';
     wrapper.id = id;
     wrapper.innerHTML = `
-        <div class="message-avatar">EA</div>
+        <div class="message-avatar">E</div>
         <div class="message-content">
-            <div class="message-role">EMMA</div>
+            <div class="message-role">Emma</div>
             <div class="message-text">
                 <div class="typing-indicator">
                     <span class="typing-dot"></span>
@@ -448,7 +430,7 @@ function autoResize(textarea) {
 
 function changeModel() {
     const modelText = document.getElementById('modelSelector').selectedOptions[0]?.textContent || 'Modelo';
-    const modeText = document.getElementById('thinkingModeSelector').selectedOptions[0]?.textContent || 'Rapido';
+    const modeText = document.getElementById('thinkingModeSelector').selectedOptions[0]?.textContent || 'Rápido';
     document.getElementById('modelBadge').textContent = `${modelText} / ${modeText}`;
 }
 
@@ -515,7 +497,7 @@ async function changePassword() {
     const confirmPassword = document.getElementById('confirmPassword').value;
 
     if (newPassword.length < 8 || newPassword !== confirmPassword) {
-        showToast('La nueva contrasena debe tener minimo 8 caracteres y coincidir.', 'error');
+        showToast('La nueva contraseña debe tener mínimo 8 caracteres y coincidir.', 'error');
         return;
     }
 
@@ -527,12 +509,12 @@ async function changePassword() {
             body: JSON.stringify({ currentPassword, newPassword, confirmPassword })
         });
         const data = await safeJson(response);
-        if (!response.ok) throw new Error(data?.error || 'No se pudo cambiar la contrasena.');
+        if (!response.ok) throw new Error(data?.error || 'No se pudo cambiar la contraseña.');
 
         document.getElementById('currentPassword').value = '';
         document.getElementById('newPassword').value = '';
         document.getElementById('confirmPassword').value = '';
-        showToast(data?.message || 'Contrasena actualizada.', 'success');
+        showToast(data?.message || 'Contraseña actualizada.', 'success');
     } catch (error) {
         showToast(error.message, 'error');
     }

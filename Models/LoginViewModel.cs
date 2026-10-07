@@ -5,10 +5,10 @@ namespace Proyecto_ai.Models
     public class LoginViewModel
     {
         [Required(ErrorMessage = "El correo es obligatorio.")]
-        [EmailAddress(ErrorMessage = "Ingresa un correo valido.")]
+        [EmailAddress(ErrorMessage = "Ingresa un correo válido.")]
         public string Correo { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "La contrasena es obligatoria.")]
+        [Required(ErrorMessage = "La contraseña es obligatoria.")]
         public string Password { get; set; } = string.Empty;
     }
 }
