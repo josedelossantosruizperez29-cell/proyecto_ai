@@ -58,6 +58,30 @@ body {
     position: relative;
 }
 
+.sidebar-close {
+    display: none;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+    z-index: 10;
+}
+
+.sidebar-close:hover {
+    background: var(--bg-card-hover);
+    color: var(--text-primary);
+    border-color: var(--border-hover);
+}
+
 .sidebar-header {
     padding: 16px;
     border-bottom: 1px solid var(--border);
@@ -1324,11 +1348,17 @@ body {
         top: 0;
         left: 0;
         height: 100%;
+        width: 280px;
         transform: translateX(-100%);
+        box-shadow: 4px 0 24px rgba(0, 0, 0, 0.4);
     }
 
     .sidebar.open {
         transform: translateX(0);
+    }
+
+    .sidebar-close {
+        display: flex;
     }
 
     .sidebar-overlay.active {
@@ -1339,16 +1369,221 @@ body {
         display: flex;
     }
 
+    .top-bar {
+        padding: 10px 12px;
+        gap: 8px;
+    }
+
+    .top-bar-left {
+        gap: 6px;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .model-selector-wrapper {
+        min-width: 0;
+        flex: 1;
+    }
+
+    .model-selector {
+        padding: 6px 28px 6px 10px;
+        font-size: 12px;
+        width: 100%;
+        min-width: 0;
+    }
+
+    .thinking-selector {
+        min-width: 80px;
+    }
+
+    .model-badge {
+        display: none;
+    }
+
     .suggestions {
         grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .welcome-screen {
+        padding: 24px 16px;
     }
 
     .welcome-title {
         font-size: 20px;
     }
 
+    .welcome-subtitle {
+        font-size: 13px;
+    }
+
+    .welcome-icon {
+        width: 52px;
+        height: 52px;
+        font-size: 20px;
+        margin-bottom: 16px;
+    }
+
+    .suggestion-card {
+        padding: 12px 14px;
+    }
+
+    .messages-container {
+        padding: 16px 12px 100px;
+    }
+
+    .message {
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+
+    .message-avatar {
+        width: 28px;
+        height: 28px;
+        font-size: 11px;
+    }
+
+    .message-text {
+        font-size: 13px;
+        max-width: 100%;
+        padding: 10px 14px;
+    }
+
+    .message-role {
+        font-size: 10px;
+        margin-bottom: 4px;
+    }
+
+    .input-area {
+        padding: 12px 12px 16px;
+    }
+
+    .input-box textarea {
+        padding: 12px 14px;
+        font-size: 13px;
+    }
+
+    .send-btn {
+        width: 36px;
+        height: 36px;
+        margin: 4px;
+    }
+
+    .input-footer {
+        font-size: 10px;
+    }
+
     .settings-panel {
-        max-height: 90vh;
+        max-width: 100%;
+        max-height: 100vh;
+    }
+
+    .settings-header {
+        padding: 20px 16px;
+    }
+
+    .settings-body {
+        padding: 20px 16px;
+    }
+
+    .toast-container {
+        top: 12px;
+        right: 12px;
+        left: 12px;
+    }
+
+    .toast {
+        padding: 10px 16px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .top-bar {
+        padding: 8px 10px;
+    }
+
+    .menu-toggle {
+        padding: 6px;
+    }
+
+    .model-selector {
+        font-size: 11px;
+        padding: 5px 24px 5px 8px;
+    }
+
+    .thinking-selector {
+        min-width: 70px;
+    }
+
+    .welcome-title {
+        font-size: 18px;
+    }
+
+    .welcome-subtitle {
+        font-size: 12px;
+    }
+
+    .suggestion-title {
+        font-size: 12px;
+    }
+
+    .suggestion-desc {
+        font-size: 11px;
+    }
+
+    .message-text {
+        font-size: 12.5px;
+    }
+
+    .input-area {
+        padding: 10px 10px 14px;
+    }
+
+    .input-box textarea {
+        padding: 10px 12px;
+        font-size: 12.5px;
+    }
+
+    .sidebar {
+        width: 260px;
+    }
+
+    .sidebar-header {
+        padding: 14px;
+    }
+
+    .ai-branding {
+        padding: 8px 10px;
+    }
+
+    .ai-name {
+        font-size: 14px;
+    }
+
+    .new-chat-btn {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    .chat-item {
+        padding: 8px 10px;
+    }
+
+    .chat-item-text {
+        font-size: 12px;
+    }
+
+    .profile-card {
+        padding: 8px 10px;
+    }
+
+    .profile-name {
+        font-size: 12px;
+    }
+
+    .profile-email {
+        font-size: 10px;
     }
 }
 
