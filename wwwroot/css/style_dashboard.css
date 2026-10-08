@@ -1616,3 +1616,273 @@ footer {
 .reveal-delay-3 {
     transition-delay: .3s;
 }
+
+/* ═══════════════════════════════════════
+   RESPONSIVE — MOBILE
+   ═══════════════════════════════════════ */
+@media (max-width: 1024px) {
+    nav {
+        padding: 0 24px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero {
+        padding: calc(var(--nav-h) + 40px) 24px 60px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-cta {
+        justify-content: center;
+    }
+
+    .hero-visual {
+        margin-left: 0;
+        margin-top: 40px;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .hero-badge-float {
+        display: none;
+    }
+
+    .stats-bar {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 24px;
+        gap: 20px 0;
+    }
+
+    .stat-item:nth-child(2) {
+        border-right: none;
+    }
+
+    .stat-item:nth-child(3),
+    .stat-item:nth-child(4) {
+        border-top: 1px solid var(--border);
+        padding-top: 20px;
+    }
+
+    section {
+        padding: 60px 24px;
+    }
+
+    .models-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .features-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px 0;
+    }
+
+    .steps-grid::before {
+        display: none;
+    }
+
+    .testi-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+    }
+
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+    }
+
+    .cta-btns {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cta-btns .btn-primary,
+    .cta-btns .btn-ghost {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+    }
+
+    .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 640px) {
+    nav {
+        padding: 0 16px;
+        height: 60px;
+    }
+
+    .nav-logo-name {
+        font-size: 15px;
+    }
+
+    .nav-logo-icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .nav-btn-ghost {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    .nav-btn-primary {
+        padding: 6px 14px;
+        font-size: 12px;
+    }
+
+    .hero {
+        padding: calc(var(--nav-h) + 24px) 16px 40px;
+    }
+
+    .hero-title {
+        font-size: clamp(30px, 8vw, 40px);
+    }
+
+    .hero-sub {
+        font-size: 14px;
+    }
+
+    .hero-badge {
+        font-size: 10px;
+        padding: 4px 10px;
+    }
+
+    .hero-cta {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hero-cta .btn-primary,
+    .hero-cta .btn-ghost {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    .hero-note {
+        font-size: 10px;
+        justify-content: center;
+    }
+
+    .app-preview {
+        border-radius: 12px;
+    }
+
+    .preview-body {
+        height: 300px;
+    }
+
+    .preview-sidebar {
+        width: 140px;
+    }
+
+    .stats-bar {
+        grid-template-columns: 1fr 1fr;
+        padding: 20px 16px;
+    }
+
+    .stat-num {
+        font-size: 28px;
+    }
+
+    .stat-label {
+        font-size: 11px;
+    }
+
+    section {
+        padding: 40px 16px;
+    }
+
+    .section-title {
+        font-size: clamp(24px, 6vw, 32px);
+    }
+
+    .section-sub {
+        font-size: 14px;
+    }
+
+    .models-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .model-card {
+        padding: 24px;
+    }
+
+    .features-list {
+        gap: 16px;
+    }
+
+    .feat-item {
+        padding: 16px;
+    }
+
+    .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .step {
+        padding: 0 16px;
+    }
+
+    .testi-card {
+        padding: 20px;
+    }
+
+    .price-card {
+        padding: 24px;
+    }
+
+    .pc-price {
+        font-size: 36px;
+    }
+
+    .cta-section {
+        padding: 60px 16px;
+    }
+
+    .cta-title {
+        font-size: clamp(26px, 7vw, 36px);
+    }
+
+    .cta-sub {
+        font-size: 14px;
+    }
+
+    footer {
+        padding: 40px 16px 24px;
+    }
+
+    .footer-top {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
