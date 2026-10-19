@@ -1,9 +1,11 @@
-document.getElementById('settingsLanguage').addEventListener('change', () => {
-    alert('Esta funcionalidad aun no esta disponible.');
-})
-const buttons = document.querySelectorAll('.settings-segment');
-buttons.forEach(element => {
+document.getElementById('settingsLanguage')?.addEventListener('change', () => {
+    showToast('Los idiomas estarán disponibles pronto.', 'success');
+});
+
+document.querySelectorAll('.settings-segment').forEach(element => {
     element.addEventListener('click', () => {
-        alert('Esta funcionalidad aun no esta disponible.');
-    })
+        document.querySelectorAll('.settings-segment').forEach(segment => segment.classList.remove('active'));
+        element.classList.add('active');
+        showToast('Los temas estarán disponibles pronto.', 'success');
+    });
 });
