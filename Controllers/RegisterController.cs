@@ -43,7 +43,7 @@ namespace Proyecto_ai.Controllers
             {
                 if (await _context.Users.AnyAsync(u => u.Correo == email))
                 {
-                    ModelState.AddModelError(nameof(model.Correo), "Este correo ya tiene una cuenta. Inicia sesion.");
+                    ModelState.AddModelError(nameof(model.Correo), "Este correo ya tiene una cuenta. Inicia sesión.");
                     return View("Register", model);
                 }
 
@@ -67,7 +67,7 @@ namespace Proyecto_ai.Controllers
             }
             catch (DbUpdateException exception) when (IsUniqueEmailViolation(exception))
             {
-                ModelState.AddModelError(nameof(model.Correo), "Este correo ya tiene una cuenta. Inicia sesion.");
+                ModelState.AddModelError(nameof(model.Correo), "Este correo ya tiene una cuenta. Inicia sesión.");
                 return View("Register", model);
             }
             catch (Exception exception)
@@ -77,7 +77,7 @@ namespace Proyecto_ai.Controllers
                 return View("Register", model);
             }
 
-            TempData["Success"] = "Cuenta creada. Inicia sesion para continuar.";
+            TempData["Success"] = "Cuenta creada. Inicia sesión para continuar.";
             return RedirectToAction("Account", "Account");
         }
 
