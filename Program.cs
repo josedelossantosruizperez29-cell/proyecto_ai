@@ -44,6 +44,11 @@ builder.Services.AddHttpClient<IAiChatService, AiChatService>(client =>
     client.Timeout = TimeSpan.FromSeconds(30);
 });
 
+builder.Services.AddHttpClient<IAiImageService, AiImageService>(client =>
+{
+    client.Timeout = TimeSpan.FromSeconds(120);
+});
+
 var app = builder.Build();
 
 app.UseForwardedHeaders();

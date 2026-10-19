@@ -1,3 +1,4 @@
+using System.Net;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,12 +15,14 @@ namespace Proyecto_ai.Controllers
     {
         private readonly AppDbContext _context;
         private readonly IAiChatService _aiChatService;
+        private readonly IAiImageService _aiImageService;
         private readonly ILogger<ChatController> _logger;
 
-        public ChatController(AppDbContext context, IAiChatService aiChatService, ILogger<ChatController> logger)
+        public ChatController(AppDbContext context, IAiChatService aiChatService, IAiImageService aiImageService, ILogger<ChatController> logger)
         {
             _context = context;
             _aiChatService = aiChatService;
+            _aiImageService = aiImageService;
             _logger = logger;
         }
 
@@ -182,7 +185,29 @@ namespace Proyecto_ai.Controllers
                     error = ex is InvalidOperationException ? ex.Message : "La IA tardo demasiado o no esta disponible. Intenta de nuevo con modo Rapido."
                 });
             }
-        }
+            }
+
+            [HttpPost("image")]
+            public async Task<IActionResult> Image(CancellationToken cancellationToken)
+            {
+                var userId = GetUserId();
+                if (userId == null)
+                {
+                    return Unauthorized();
+                }
+
+                // Rate limit: check user preferences for image count today
+                var preference = await _context.UserAiPreferences.FirstOrDefaultAsync(p => p.UserId == userId, cancellationToken);
+                if (preference != null && preference.ImageCount >= 10)
+                {
+                    return StatusCode(StatusCodes.Status429TooManyRequests, new
+                    {
+                        error = "Has alcanzado el límite de 10 imágenes por día. Intenta mañana."
+                    });
+                }
+
+                return Ok(new { success = true });
+            }
 
         [HttpDelete("conversations/{conversationId:long}")]
         public async Task<IActionResult> Delete(long conversationId)

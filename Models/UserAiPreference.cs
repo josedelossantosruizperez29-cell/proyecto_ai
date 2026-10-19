@@ -6,6 +6,7 @@ namespace Proyecto_ai.Models
         public long UserId { get; set; }
         public string DefaultModelId { get; set; } = AiModelCatalog.DefaultModelId;
         public string ThinkingMode { get; set; } = ThinkingModeCatalog.DefaultMode;
+        public int ImageCount { get; set; } = 0;
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
         public User User { get; set; } = null!;
